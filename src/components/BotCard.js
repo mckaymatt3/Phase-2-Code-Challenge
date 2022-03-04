@@ -61,9 +61,10 @@ function BotCard({ bot, onChangeBot, deleteBot }) {
             <div className="ui center aligned segment basic">
               <button
                 className="ui mini red button"
-                onClick={() =>
+                onClick={(event) => {
+                  event.stopPropagation();
                   onClickyTwo(bot)
-                }
+                }}
               >
                 x
               </button>
