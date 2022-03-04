@@ -9,13 +9,27 @@ const botTypeClasses = {
   Captain: "icon star",
 };
 
-function BotCard({ bot }) {
+function BotCard({ bot, onChangeBot, deleteBot }) {
+  // create function to target each bot and pass in parent function
+  function onClicky () {
+    //console.log("This bot clicked:", bot)
+    // addBot(bot)
+    onChangeBot(bot)
+  }
+
+  // create another click function to target bot to delete to pass in from parent function
+  function onClickyTwo() {
+    // event.stopPropagation();
+    // console.log("This bot clicked within delete: ", bot)
+    deleteBot(bot)
+  }
+
   return (
     <div className="ui column">
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
+        onClick={() => onClicky(bot)}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
@@ -48,7 +62,7 @@ function BotCard({ bot }) {
               <button
                 className="ui mini red button"
                 onClick={() =>
-                  console.log("add code to connect event listener")
+                  onClickyTwo(bot)
                 }
               >
                 x
